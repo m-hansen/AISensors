@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Drawing;  // DrawingHelper namespace
 
 namespace SampleGame
 {
@@ -45,6 +46,9 @@ namespace SampleGame
             this.IsMouseVisible = true;
             keyboardStateCurrent = new KeyboardState();
             mouseStateCurrent = new MouseState();
+
+            // Initialize DrawingHelper
+            DrawingHelper.Initialize(GraphicsDevice);
 
             player = new Player();
             player.AnimationInterval = TimeSpan.FromMilliseconds(100);          // next frame every 100 miliseconds
@@ -247,7 +251,33 @@ namespace SampleGame
 
             // *********************** END DRAWING TEXT ON THE SCREEN FOR ASSIGNMENT ***************** //
 
-            player.Draw(this.spriteBatch);              // draws the player object on the screen
+            player.Draw(this.spriteBatch);              // draws the player object on the 
+
+
+            // *********************** DRAWING SENSORS ON THE SCREEN FOR ASSIGNMENT ****************** //
+
+            // TODO - apply keybindings for sensors
+
+            // Draw the RangeFinders
+            int rfInterval = 15;          // size of the angle between each sensor
+            int rfAngle = 30;             // the angle between the far sensors
+            int rfLength = -35;           // length of each sensor
+            DrawingHelper.Begin(PrimitiveType.LineList);
+            for (int i = 0; i <= rfAngle; i += rfInterval) // this is the "range" of the sensors
+            {
+                DrawingHelper.DrawLine(
+                    new Vector2(player.Position.X, player.Position.Y),
+                    player.CalculateRotatedMovement(new Vector2(i-rfInterval, rfLength), player.Rotation) * player.Speed + player.Position,
+                    Color.Red);
+            }
+            DrawingHelper.End();
+            // End rangeFinders
+
+            // Draw Adjacent Agent Sensors
+            DrawingHelper.DrawCircle(new Vector2(player.Position.X, player.Position.Y), 141, Color.Green, false);
+
+            // *********************** END DRAWING SENSORS ON THE SCREEN FOR ASSIGNMENT ************** //
+
             spriteBatch.End();                          // stop drawing sprites
 
             base.Draw(gameTime);
