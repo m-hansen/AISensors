@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Matt\Desktop\m_hansen-samplegame-6938ab5f639f\SampleGame\SampleGame\bin\x86\Debug\Content\Images\ship1.xnb</Output>
-      <Time>2013-02-02T12:06:02.8666159-05:00</Time>
+      <Output>C:\Users\Matt\repos\TestRepos\SampleGame\SampleGame\bin\x86\Debug\Content\Images\ship1.xnb</Output>
+      <Time>2013-02-02T18:16:23.6686216-05:00</Time>
     </Item>
     <Item>
       <Source>Images\agent.png</Source>
@@ -19,8 +19,8 @@
         <Data Key="ColorKeyColor">255, 255, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\Matt\Desktop\m_hansen-samplegame-6938ab5f639f\SampleGame\SampleGame\bin\x86\Debug\Content\Images\agent.xnb</Output>
-      <Time>2013-02-02T12:06:02.8586155-05:00</Time>
+      <Output>C:\Users\Matt\repos\TestRepos\SampleGame\SampleGame\bin\x86\Debug\Content\Images\agent.xnb</Output>
+      <Time>2013-02-02T18:16:23.6676215-05:00</Time>
     </Item>
     <Item>
       <Source>Images\subject.png</Source>
@@ -31,8 +31,8 @@
         <Data Key="ColorKeyColor">255, 255, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\Matt\Desktop\m_hansen-samplegame-6938ab5f639f\SampleGame\SampleGame\bin\x86\Debug\Content\Images\subject.xnb</Output>
-      <Time>2013-02-02T12:06:02.8746164-05:00</Time>
+      <Output>C:\Users\Matt\repos\TestRepos\SampleGame\SampleGame\bin\x86\Debug\Content\Images\subject.xnb</Output>
+      <Time>2013-02-02T18:16:23.6696216-05:00</Time>
     </Item>
     <Item>
       <Source>Images\wall.png</Source>
@@ -40,8 +40,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Matt\Desktop\m_hansen-samplegame-6938ab5f639f\SampleGame\SampleGame\bin\x86\Debug\Content\Images\wall.xnb</Output>
-      <Time>2013-02-02T12:06:02.8826169-05:00</Time>
+      <Output>C:\Users\Matt\repos\TestRepos\SampleGame\SampleGame\bin\x86\Debug\Content\Images\wall.xnb</Output>
+      <Time>2013-02-02T18:16:23.6696216-05:00</Time>
     </Item>
     <Item>
       <Source>Images\wall1.png</Source>
@@ -49,8 +49,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Matt\Desktop\m_hansen-samplegame-6938ab5f639f\SampleGame\SampleGame\bin\x86\Debug\Content\Images\wall1.xnb</Output>
-      <Time>2013-02-02T12:06:02.8906173-05:00</Time>
+      <Output>C:\Users\Matt\repos\TestRepos\SampleGame\SampleGame\bin\x86\Debug\Content\Images\wall1.xnb</Output>
+      <Time>2013-02-02T18:16:23.6706217-05:00</Time>
     </Item>
     <Item>
       <Source>Fonts\Font1.spritefont</Source>
@@ -58,8 +58,8 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Matt\Desktop\m_hansen-samplegame-6938ab5f639f\SampleGame\SampleGame\bin\x86\Debug\Content\Fonts\Font1.xnb</Output>
-      <Time>2013-02-02T12:06:02.8476148-05:00</Time>
+      <Output>C:\Users\Matt\repos\TestRepos\SampleGame\SampleGame\bin\x86\Debug\Content\Fonts\Font1.xnb</Output>
+      <Time>2013-02-02T18:16:23.6676215-05:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -67,10 +67,10 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Matt\Desktop\m_hansen-samplegame-6938ab5f639f\SampleGame\SampleGameContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Matt\Desktop\m_hansen-samplegame-6938ab5f639f\SampleGame\SampleGame\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Matt\Desktop\m_hansen-samplegame-6938ab5f639f\SampleGame\SampleGameContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Matt\Desktop\m_hansen-samplegame-6938ab5f639f\SampleGame\SampleGame\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Matt\repos\TestRepos\SampleGame\SampleGameContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Matt\repos\TestRepos\SampleGame\SampleGame\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Matt\repos\TestRepos\SampleGame\SampleGameContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Matt\repos\TestRepos\SampleGame\SampleGame\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
