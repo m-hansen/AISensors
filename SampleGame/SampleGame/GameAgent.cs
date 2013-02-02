@@ -105,7 +105,7 @@ namespace SampleGame
         }
 
         // Render the sprite to the screen
-        public virtual void Draw(SpriteBatch sprites)
+        public virtual void Draw(SpriteBatch sprites, SpriteFont font1)
         {
             // whether the object is currently being drawn on the screen
             if (Active)

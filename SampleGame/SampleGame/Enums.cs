@@ -13,5 +13,11 @@ namespace SampleGame
             AgentSensor = 1,
             PieSliceSensor = 2
         }
+
+        public enum AgentType
+        {
+            Wall = 0,
+            NPC = 1
+        }
     }
 }

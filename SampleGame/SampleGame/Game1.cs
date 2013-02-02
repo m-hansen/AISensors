@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using Drawing;
+using Drawing;  // DrawingHelper namespace
 
 namespace SampleGame
 {
@@ -18,7 +18,6 @@ namespace SampleGame
         SpriteBatch spriteBatch;
         Player player;                                      
         List<GameAgent> agentAIList = new List<GameAgent>();
-        //List<Sensor> sensorList = new List<Sensor>();
         KeyboardState keyboardStateCurrent;
         KeyboardState keyboardStatePrevious;
         MouseState mouseStateCurrent;
@@ -55,18 +54,20 @@ namespace SampleGame
             player.Position = new Vector2(windowWidth / 2, windowHeight / 2);   // setting position to center of screen
             player.RotationSpeed = 5.0f;                                        // rotate somewhat quick
             player.Speed = 4.0f;                                                // setting forward - backward speed
+            player.InitializeSensors();                                         // initializes all sensors for the player object
 
             // ************ CREATING THE WALLS FOR THE ASSIGNMENT ********* //
             int defaultWalls = 2;
 
             for (int i = 0; i < defaultWalls; i++)
             {
-                agentAIList.Add(new GameAgent());
+                agentAIList.Add(new GameAgent()
+                {
+                    Type = (int)Enums.AgentType.Wall
+                });
             }
 
             // ********** END CREATING THE WALLS FOR THE ASSIGNMENT ******* //
-
-            
 
             base.Initialize();
         }
@@ -140,12 +141,6 @@ namespace SampleGame
 
             player.Update(gameTime, keyboardStateCurrent, keyboardStatePrevious, mouseStateCurrent, mouseStatePrevious, agentAIList, windowWidth, windowHeight);
 
-            // update the player's sensors
-            foreach (Sensor sensor in player.Sensors)
-            {
-                sensor.Draw(keyboardStateCurrent);
-            }
-
             // Create new agent on mouse click
             if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton != ButtonState.Pressed)
             {
@@ -155,12 +150,8 @@ namespace SampleGame
                 agent.Position = new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y);
                 agent.Rotation = 0.0f;
                 agentAIList.Add(agent);
+                agent.Type = (int)Enums.AgentType.NPC;
             }
-
-            /*foreach (Sensor sensor in sensorList)
-            {
-                sensor.Update(keyboardStateCurrent, agentAIList);
-            }*/
 
             base.Update(gameTime);
         }
@@ -174,7 +165,7 @@ namespace SampleGame
             // Draw each agent
             foreach (GameAgent agent in agentAIList)
             {
-                agent.Draw(this.spriteBatch);
+                agent.Draw(this.spriteBatch, font1);
             }
 
             // *********************** DRAWING TEXT ON THE SCREEN FOR ASSIGNMENT ******************** //
@@ -191,36 +182,17 @@ namespace SampleGame
 
             // *********************** END DRAWING TEXT ON THE SCREEN FOR ASSIGNMENT ***************** //
 
-            player.Draw(this.spriteBatch);              // draws the player object on the 
+            player.Draw(this.spriteBatch, font1);   // draws the player object on the screen
 
 
             // *********************** DRAWING SENSORS ON THE SCREEN FOR ASSIGNMENT ****************** //
 
-            // TODO - apply keybindings for sensors
-
-            // Draw the RangeFinders
-           /* foreach (Sensor sensor in sensorList)
-            {
-                int rfInterval = 15;          // size of the angle between each sensor
-                int rfAngle = 30;             // the angle between the far sensors
-                int rfLength = -35;           // length of each sensor
-                DrawingHelper.Begin(PrimitiveType.LineList);
-                for (int i = 0; i <= rfAngle; i += rfInterval) // this is the "range" of the sensors
-                {
-                    DrawingHelper.DrawLine(
-                        new Vector2(player.Position.X, player.Position.Y),
-                        player.CalculateRotatedMovement(new Vector2(i - rfInterval, rfLength), player.Rotation) * player.Speed + player.Position,
-                        Color.Red);
-                }
-                DrawingHelper.End();
-            }
-            // End rangeFinders
-
+            //TODO delete
             // Draw Adjacent Agent Sensors
-            DrawingHelper.DrawCircle(new Vector2(player.Position.X, player.Position.Y), 141, Color.Green, false);*/
+            //DrawingHelper.DrawCircle(new Vector2(player.Position.X, player.Position.Y), 141, Color.Green, false);
 
             // *********************** END DRAWING SENSORS ON THE SCREEN FOR ASSIGNMENT ************** //
-            
+
             spriteBatch.End();                          // stop drawing sprites
 
             base.Draw(gameTime);
