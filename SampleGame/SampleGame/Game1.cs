@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using Drawing;  // DrawingHelper namespace
+using Drawing;
 
 namespace SampleGame
 {
@@ -18,7 +18,7 @@ namespace SampleGame
         SpriteBatch spriteBatch;
         Player player;                                      
         List<GameAgent> agentAIList = new List<GameAgent>();
-        List<Sensor> sensorList = new List<Sensor>();
+        //List<Sensor> sensorList = new List<Sensor>();
         KeyboardState keyboardStateCurrent;
         KeyboardState keyboardStatePrevious;
         MouseState mouseStateCurrent;
@@ -66,73 +66,7 @@ namespace SampleGame
 
             // ********** END CREATING THE WALLS FOR THE ASSIGNMENT ******* //
 
-            // ********** CREATING SENSOR LIST FOR ASSIGNMENT ************* //
-
-            sensorList.Add(new Sensor()
-            {
-                Type = (int)Enums.SensorType.RangeFinder,
-                Rotation1 = (float)Math.PI / 3,
-                Key = Keys.P,
-                MaxDistance = 100
-            });
-
-            sensorList.Add(new Sensor()
-            {
-                Type = (int)Enums.SensorType.RangeFinder,
-                Rotation1 = 0,
-                Key = Keys.P,
-                MaxDistance = 100
-            });
-
-            sensorList.Add(new Sensor()
-            {
-                Type = (int)Enums.SensorType.RangeFinder,
-                Rotation1 = -1 * (float)Math.PI / 3,
-                Key = Keys.P,
-                MaxDistance = 100
-            });
-
-            sensorList.Add(new Sensor()
-            {
-                Type = (int)Enums.SensorType.AgentSensor,
-                Radius = 100,
-                Key = Keys.O,
-                MaxDistance = 100
-            });
-
-            sensorList.Add(new Sensor() // - 60 to 60 degrees
-            {
-                Type = (int)Enums.SensorType.PieSliceSensor,
-                Rotation1 = -1 * (float)Math.PI / 3,
-                Rotation2 = (float)Math.PI / 3,
-                MaxDistance = 100
-            });
-
-            sensorList.Add(new Sensor() // 60 to 120 degrees
-            {
-                Type = (int)Enums.SensorType.PieSliceSensor,
-                Rotation1 = (float)Math.PI / 3,
-                Rotation2 = 2 * (float)Math.PI / 3,
-                MaxDistance = 100
-            });
-
-            sensorList.Add(new Sensor() // 120 to 240 degrees
-            {
-                Type = (int)Enums.SensorType.PieSliceSensor,
-                Rotation1 = 2 * (float)Math.PI / 3,
-                Rotation2 = 4 * (float)Math.PI / 3,
-                MaxDistance = 100
-            });
-
-            sensorList.Add(new Sensor() // 240 to 300 degrees
-            {
-                Type = (int)Enums.SensorType.PieSliceSensor,
-                Rotation1 = 4 * (float)Math.PI / 3,
-                Rotation2 = 5 * (float)Math.PI / 3,
-                MaxDistance = 100
-            });
-
-            // ********** END CREATING SENSOR LIST FOR ASSIGNMENT ********* //
+            
 
             base.Initialize();
         }
@@ -206,6 +140,12 @@ namespace SampleGame
 
             player.Update(gameTime, keyboardStateCurrent, keyboardStatePrevious, mouseStateCurrent, mouseStatePrevious, agentAIList, windowWidth, windowHeight);
 
+            // update the player's sensors
+            foreach (Sensor sensor in player.Sensors)
+            {
+                sensor.Draw(keyboardStateCurrent);
+            }
+
             // Create new agent on mouse click
             if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton != ButtonState.Pressed)
             {
@@ -217,10 +157,10 @@ namespace SampleGame
                 agentAIList.Add(agent);
             }
 
-            foreach (Sensor sensor in sensorList)
+            /*foreach (Sensor sensor in sensorList)
             {
                 sensor.Update(keyboardStateCurrent, agentAIList);
-            }
+            }*/
 
             base.Update(gameTime);
         }
@@ -259,25 +199,28 @@ namespace SampleGame
             // TODO - apply keybindings for sensors
 
             // Draw the RangeFinders
-            int rfInterval = 15;          // size of the angle between each sensor
-            int rfAngle = 30;             // the angle between the far sensors
-            int rfLength = -35;           // length of each sensor
-            DrawingHelper.Begin(PrimitiveType.LineList);
-            for (int i = 0; i <= rfAngle; i += rfInterval) // this is the "range" of the sensors
+           /* foreach (Sensor sensor in sensorList)
             {
-                DrawingHelper.DrawLine(
-                    new Vector2(player.Position.X, player.Position.Y),
-                    player.CalculateRotatedMovement(new Vector2(i-rfInterval, rfLength), player.Rotation) * player.Speed + player.Position,
-                    Color.Red);
+                int rfInterval = 15;          // size of the angle between each sensor
+                int rfAngle = 30;             // the angle between the far sensors
+                int rfLength = -35;           // length of each sensor
+                DrawingHelper.Begin(PrimitiveType.LineList);
+                for (int i = 0; i <= rfAngle; i += rfInterval) // this is the "range" of the sensors
+                {
+                    DrawingHelper.DrawLine(
+                        new Vector2(player.Position.X, player.Position.Y),
+                        player.CalculateRotatedMovement(new Vector2(i - rfInterval, rfLength), player.Rotation) * player.Speed + player.Position,
+                        Color.Red);
+                }
+                DrawingHelper.End();
             }
-            DrawingHelper.End();
             // End rangeFinders
 
             // Draw Adjacent Agent Sensors
-            DrawingHelper.DrawCircle(new Vector2(player.Position.X, player.Position.Y), 141, Color.Green, false);
+            DrawingHelper.DrawCircle(new Vector2(player.Position.X, player.Position.Y), 141, Color.Green, false);*/
 
             // *********************** END DRAWING SENSORS ON THE SCREEN FOR ASSIGNMENT ************** //
-
+            
             spriteBatch.End();                          // stop drawing sprites
 
             base.Draw(gameTime);
