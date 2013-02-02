@@ -114,6 +114,8 @@
     <Compile Include="Enums.cs" />
     <Compile Include="GameAgent.cs" />
     <Compile Include="PieSliceSensor.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="GameAgent.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
