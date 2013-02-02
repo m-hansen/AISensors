@@ -1,0 +1,2 @@
+C:\Users\David\Desktop\m_hansen-samplegame-6938ab5f639f\SampleGame\SampleGameContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Matt\Desktop\m_hansen-samplegame-6938ab5f639f\SampleGame\SampleGameContent\obj\x86\Debug\SampleGameContent.contentprojResolveAssemblyReference.cache
