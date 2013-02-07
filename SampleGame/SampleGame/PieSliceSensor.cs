@@ -17,19 +17,25 @@ namespace SampleGame
 {
     public class PieSliceSensor : Sensor
     {
-        public int MaxDistance;
-        public float Rotation1;
-        public float Rotation2;
-        public string DisplayText;
-        public int Index;
+        public int MaxDistance;                     // range of the sensor
+        public float Rotation1;                     // draw angle for sensor
+        public float Rotation2;                     // draw angle for sensor
+        public string DisplayText;                  // draw text with return information
+        public int Index;                           // region of the pie slice
+        public int[] ActivationLevel = {0,0,0,0};   // number of agents within sensor range
+
         private bool isTriggered;
         private Vector2 endPoint1;
         private Vector2 endPoint2;
         
         public override void Update(KeyboardState keyboard, List<GameAgent> agentAIList, Vector2 playerPos, float playerRot)
         {
+            // reset the activation levels for each region of the sensor
+            for (int i = 0; i < 4; i++)
+                ActivationLevel[i] = 0;
+
             // reinitializing the sensor to not triggered (no agent withing proximity)
-            isTriggered = false;
+            //isTriggered = false;
 
             // the sensor is active if the key is currently being pushed down
             Active = keyboard.IsKeyDown(Key);
@@ -47,7 +53,9 @@ namespace SampleGame
             {
                 // if the agent is within the pie slice sensor
                 if (isTriggered = IsInAgentSensorRange(agent, playerPos, endPoint1, endPoint2))
-                    break;
+                {
+                    ActivationLevel[Index]++;
+                }
             }
         }
 
@@ -60,7 +68,7 @@ namespace SampleGame
             Vector2 bottomRight = new Vector2(agentBounds.Left + agentBounds.Width, agentBounds.Top);
             Vector2 topLeft = new Vector2(agentBounds.Left, agentBounds.Top + agentBounds.Height);
             Vector2 topRight = new Vector2(bottomRight.X, topLeft.Y);
-
+            
             return
                 IsPointInTriangle(bottomLeft, playerPos, endPoint1, endPoint2) ||
                 IsPointInTriangle(bottomRight, playerPos, endPoint1, endPoint2) ||
@@ -77,7 +85,7 @@ namespace SampleGame
             Vector3 _a = new Vector3(a, 0);
             Vector3 _b = new Vector3(b, 0);
             Vector3 _c = new Vector3(c, 0);
-
+            
             return (IsSameSide(_targetPoint, _a, _b, _c) &&
                 IsSameSide(_targetPoint, _b, _a, _c) &&
                 IsSameSide(_targetPoint, _c, _a, _b));
@@ -87,7 +95,7 @@ namespace SampleGame
         {
             Vector3 p1 = Vector3.Cross(b - a, point1 - a);
             Vector3 p2 = Vector3.Cross(b - a, point2 - a);
-
+            
             return Vector3.Dot(p1, p2) >= 0;
         }
 
@@ -95,13 +103,14 @@ namespace SampleGame
         {
             if (Active)
             {
-                if (isTriggered)
+                if (ActivationLevel[Index] > 0)
                 {
                     DrawingHelper.DrawFastLine(startPoint, endPoint1, Color.Yellow);
                     DrawingHelper.DrawFastLine(startPoint, endPoint2, Color.Yellow);
                     DrawingHelper.DrawFastLine(endPoint1, endPoint2, Color.Red);
-
-                    sprites.DrawString(font1, "Pie-Slice Sensor " + DisplayText + ": Triggered", new Vector2(20, 460 + 20 * Index), Color.LightGreen, 0.0f, Vector2.Zero, 0.75f, SpriteEffects.None, 0);
+                    sprites.DrawString(font1, "Pie-Slice Sensor " + DisplayText + ": Triggered (Activation Level: " + 
+                        ActivationLevel[Index] + ")", new Vector2(20, 460 + 20 * Index), Color.LightGreen, 0.0f, 
+                        Vector2.Zero, 0.75f, SpriteEffects.None, 0);
                 }
                 else
                 {

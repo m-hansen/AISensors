@@ -51,7 +51,6 @@ namespace SampleGame
                 Type = (int)Enums.SensorType.AgentSensor,
                 Radius = 150,
                 Key = Keys.O,
-                //MaxDistance = 100 // TODO - del
             });
 
             sensorList.Add(new PieSliceSensor() // - 60 to 60 degrees

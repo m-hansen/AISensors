@@ -53,26 +53,25 @@ namespace SampleGame
                     inRangeInfoList.Add(new InRangeInfo()
                     {
                         Distance = dist,
-                        Rotation = CalculateRotation(playerPos, playerRot, agent.Position)
+                        Rotation = CalculateRotation(playerPos, playerRot, agent.Position),
+                        Position = agent.Position
                     });
                 }
             }
         }
 
         private float CalculateRotation(Vector2 playerPos, float playerRot, Vector2 targetPos)
-        {
+        {//TODO ?
             Vector2 temp = playerPos - targetPos;
 
-            playerRot = playerRot % (float)(2 * Math.PI);
+            playerRot = playerRot % (float)(MathHelper.Pi);
 
             double temp1 = Math.Atan2(temp.X, -temp.Y);
-
             double temp2 = temp1 - playerRot - Math.PI;
-
-            double temp3 = temp2 % (Math.PI * 2);
+            double temp3 = temp2 % (MathHelper.Pi);
 
             if (temp3 < 0)
-                temp3 += Math.PI * 2;
+                temp3 += MathHelper.TwoPi;
 
             return (float)(temp3);
 
@@ -109,7 +108,14 @@ namespace SampleGame
 
                     foreach (InRangeInfo inRangeInfo in inRangeInfoList)
                     {
-                        text += "(" + GetRotationInDegrees(inRangeInfo.Rotation) + ", " + Math.Round(inRangeInfo.Distance, 2) + ")";
+                        float targetAngle = GetRotationInDegrees(inRangeInfo.Rotation);     // calculate the angle of the target in relation to the player
+                        float targetDistance = (float)Math.Round(inRangeInfo.Distance, 2);  // calculate the distance between the target and player
+
+                        // draw a line from the player to the target for debugging purposes
+                        DrawingHelper.DrawFastLine(new Vector2(center.X, center.Y), 
+                            new Vector2(inRangeInfo.Position.X, inRangeInfo.Position.Y), 
+                            Color.MediumPurple);
+                        text += "(" + targetAngle + ", " + targetDistance + ")";
                     }
 
                     text += "]";
@@ -123,6 +129,7 @@ namespace SampleGame
         {
             public float Distance;
             public float Rotation;
+            public Vector2 Position;
         }
     }
 }
