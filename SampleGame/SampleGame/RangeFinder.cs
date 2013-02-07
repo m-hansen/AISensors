@@ -7,21 +7,21 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using Drawing;
 
-// TODO - add return values
-// distance
+// TODO - fix intersection point to reflect bounds of wall and not a horizontal line
 
 namespace SampleGame
 {
     public class RangeFinder : Sensor
     {
-        public float Rotation;              // the angle of the range finder
-        public int MaxDistance;             // how far the range finder will reach
-        private bool isIntersecting;        // if the rangefinder is currently intersecting with an object
-        private Vector2 endPoint;           // the point to where the rangefinder stops
-        private double intersectionDistance;// if the range finder is currently intersecting an agent
-        public int Index;                   // index of range finder (used to determine where to display the distance on the screen)
-        public string DirectionText;
-        public Vector2 intersectingPoint;
+        public float Rotation;                  // the angle of the range finder
+        public int MaxDistance;                 // how far the range finder will reach
+        public int Index;                       // index of range finder (used to determine where to display the distance on the screen)
+        public string DirectionText;            // display which rangefinder if being referenced
+        public Vector2 intersectingPoint;       // stores the point of intersection between the sensor and object
+
+        private bool isIntersecting;            // if the rangefinder is currently intersecting with an object
+        private Vector2 endPoint;               // the point to where the rangefinder stops
+        private double intersectionDistance;    // if the range finder is currently intersecting an agent
 
         public override void Update(KeyboardState keyboard, List<GameAgent> agentAIList, Vector2 playerPos, float playerRot)
         {
@@ -161,11 +161,18 @@ namespace SampleGame
         {
             if (Active)
             {
-                DrawingHelper.DrawFastLine(startPoint, endPoint, isIntersecting ? Color.Red : Color.Yellow);
+                DrawingHelper.DrawFastLine(startPoint, isIntersecting ? intersectingPoint : endPoint, isIntersecting ? Color.Red : Color.Yellow);
 
                 if (isIntersecting)
                 {
-                    sprites.DrawString(font1, "Range Finder " + DirectionText + ": " + Math.Round(intersectingPoint.X, 2) + ", " + Math.Round(intersectingPoint.Y, 2) + ", " + Math.Round(intersectionDistance, 2), new Vector2(20, 400 + 20 * Index), Color.LightGreen, 0.0f, Vector2.Zero, 0.75f, SpriteEffects.None, 0);
+                    // draw only the distance
+                    sprites.DrawString(font1, "Range Finder " + DirectionText + ": " + Math.Round(intersectionDistance, 2) + " pixels", 
+                        new Vector2(20, 400 + 20 * Index), Color.LightGreen, 0.0f, Vector2.Zero, 0.75f, SpriteEffects.None, 0);
+
+                    // used to draw intersecting coordinates and distance
+                    //sprites.DrawString(font1, "Range Finder " + DirectionText + ": (" + Math.Round(intersectingPoint.X, 2) + ", " + 
+                        //Math.Round(intersectingPoint.Y, 2) + ") " + Math.Round(intersectionDistance, 2) + " pixels", 
+                        //new Vector2(20, 400 + 20 * Index), Color.LightGreen, 0.0f, Vector2.Zero, 0.75f, SpriteEffects.None, 0);
                 }
             }
         }

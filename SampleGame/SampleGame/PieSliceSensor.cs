@@ -7,9 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Drawing;
 
-// TODO - return values
-// activation levels
-
+// TODO
 // should an agent be able to trigger two portions at the same time?
 // would it be better to check for outer bounds of sensor by pixel and inner bounds by origin to prevent this?
 

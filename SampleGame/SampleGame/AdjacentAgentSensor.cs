@@ -10,9 +10,8 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Drawing;
 
-// TODO add return values
-// relative angles
-// distance
+// TODO
+// fix relative angles?
 
 namespace SampleGame
 {
@@ -61,14 +60,14 @@ namespace SampleGame
         }
 
         private float CalculateRotation(Vector2 playerPos, float playerRot, Vector2 targetPos)
-        {//TODO ?
-            Vector2 temp = playerPos - targetPos;
+        {
+            Vector2 dist = playerPos - targetPos;
 
-            playerRot = playerRot % (float)(MathHelper.Pi);
+            playerRot = playerRot % (float)(MathHelper.TwoPi);
 
-            double temp1 = Math.Atan2(temp.X, -temp.Y);
-            double temp2 = temp1 - playerRot - Math.PI;
-            double temp3 = temp2 % (MathHelper.Pi);
+            double temp1 = Math.Atan2(dist.X, -dist.Y);
+            double temp2 = temp1 - playerRot - MathHelper.Pi;
+            double temp3 = temp2 % (MathHelper.TwoPi);
 
             if (temp3 < 0)
                 temp3 += MathHelper.TwoPi;
@@ -93,7 +92,7 @@ namespace SampleGame
 
         private float GetRotationInDegrees(float Rotation)
         {
-            return (float)Math.Round(Rotation * 180 / Math.PI, 2);
+            return (float)Math.Round(Rotation * 180 / MathHelper.Pi, 2);
         }
 
         public override void Draw(SpriteBatch sprites, Vector2 center, SpriteFont font1)
@@ -115,12 +114,14 @@ namespace SampleGame
                         DrawingHelper.DrawFastLine(new Vector2(center.X, center.Y), 
                             new Vector2(inRangeInfo.Position.X, inRangeInfo.Position.Y), 
                             Color.MediumPurple);
+
                         text += "(" + targetAngle + ", " + targetDistance + ")";
                     }
 
                     text += "]";
 
                     sprites.DrawString(font1, text, new Vector2(20, 560), Color.LightGreen, 0.0f, Vector2.Zero, 0.75f, SpriteEffects.None, 0);
+                    sprites.DrawString(font1, "     (Angle, Distance)", new Vector2(20, 580), Color.LightGreen, 0.0f, Vector2.Zero, 0.75f, SpriteEffects.None, 0);
                 }
             }
         }
