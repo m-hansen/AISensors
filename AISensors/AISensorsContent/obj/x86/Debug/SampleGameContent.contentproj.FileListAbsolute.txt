@@ -1,0 +1,6 @@
+C:\Users\David\Desktop\m_hansen-samplegame-6938ab5f639f\SampleGame\SampleGameContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Matt\Desktop\m_hansen-samplegame-6938ab5f639f\SampleGame\SampleGameContent\obj\x86\Debug\SampleGameContent.contentprojResolveAssemblyReference.cache
+C:\Users\David\Desktop\Stuffffff\m_hansen-samplegame-6938ab5f639f\SampleGame\SampleGameContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Matthew\Desktop\SampleGame\SampleGame\SampleGameContent\obj\x86\Debug\SampleGameContent.contentprojResolveAssemblyReference.cache
+C:\Users\Matt\repos\SampleGame\2.7.1\SampleGame\SampleGameContent\obj\x86\Debug\SampleGameContent.contentprojResolveAssemblyReference.cache
+C:\Users\Matt\git\SampleGame\SampleGame\SampleGameContent\obj\x86\Debug\SampleGameContent.contentprojResolveAssemblyReference.cache

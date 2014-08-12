@@ -1,0 +1,3 @@
+C:\Users\Matt\git\SampleGame\SampleGame\SampleGameContent\obj\x86\Debug\AISensorsContent.contentprojResolveAssemblyReference.cache
+C:\Users\Matt\git\AISensors\SampleGame\SampleGameContent\obj\x86\Debug\AISensorsContent.contentprojResolveAssemblyReference.cache
+C:\Users\Matt\git\AISensors\AISensors\AISensorsContent\obj\x86\Debug\AISensorsContent.contentprojResolveAssemblyReference.cache
